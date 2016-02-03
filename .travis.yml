@@ -1,5 +1,5 @@
 language: common-lisp
-sudo: false
+sudo: required
 
 addons:
   postgresql: "9.3"
@@ -12,6 +12,11 @@ env:
   matrix:
     - LISP=sbcl-bin COVERALLS=true
     - LISP=ccl-bin
+    - LISP=abcl
+    - LISP=clisp
+    - LISP=ecl
+    - LISP=allegro
+    - LISP=cmucl
 
 install:
   # Install Roswell
