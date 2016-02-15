@@ -58,6 +58,15 @@
          (table-indices (table-indices-info class driver-type))
          (db-columns (column-definitions *connection* table-name))
          (db-indices (table-indices *connection* table-name)))
+    (format t "~&
+Class:
+  Columns: ~S
+  Indices: ~S
+
+DB:
+  Columns: ~S
+  Indices: ~S
+" table-columns table-indices db-columns db-indices)
     (multiple-value-bind (columns-intersection
                           columns-to-delete
                           columns-to-add)
@@ -227,7 +236,15 @@
          (table-indices (table-indices-info class :sqlite3))
          (db-columns (column-definitions *connection* table-name))
          (db-indices (table-indices *connection* table-name)))
+    (format t "~&
+Class:
+  Columns: ~S
+  Indices: ~S
 
+DB:
+  Columns: ~S
+  Indices: ~S
+" table-columns table-indices db-columns db-indices)
     (dolist (idx db-indices)
       (setf (getf (cdr idx) :columns)
             (sort (getf (cdr idx) :columns) #'string<=)))
