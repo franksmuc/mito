@@ -36,6 +36,7 @@
             0))))
 
 (defun column-definitions (conn table-name)
+  (format t "~&~S~%" (table-info conn table-name))
   (labels ((column-primary-key-p (column)
              (not (= (getf column :|pk|) 0)))
            (column-auto-increment-p (column)
