@@ -143,7 +143,9 @@
                     :function
                     (lambda (object &rest ignore)
                       (declare (ignore ignore))
-                      (setf object (first object))
+                      ;; I don't know why but SBCL pass a CONS of the instance instead of the instance itself.
+                      (when (consp object)
+                        (setf object (first object)))
                       (if (slot-boundp object slot-name)
                           (slot-value object slot-name)
                           (let ((foreign-object
